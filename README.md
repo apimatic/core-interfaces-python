@@ -1,4 +1,4 @@
-# apimatic-core-interfaces-python
+# apimatic-core-interfaces
 This project contains the abstract layer for APIMatic's core library. The purpose of creating interfaces is to separate out the functionalities needed by APIMatic's core library module. The goal is to support scalability and feature enhancement of the core library and the SDKs along with avoiding any breaking changes by reducing tight coupling between modules through the introduction of interfaces.
 
 ## Interfaces
