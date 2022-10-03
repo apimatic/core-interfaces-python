@@ -12,18 +12,12 @@ else:
 
 setup(
     name='apimatic-core-interfaces',
-    version='1.0.0',
-    description='The abstract library for APIMatic SDKs',
+    version='0.1.0',
+    description='An abstract layer of the functionalities provided by apimatic-core-library, requests-client-adapter and APIMatic SDKs.',
     long_description=long_description,
     long_description_content_type="text/markdown",
     author='APIMatic',
     author_email='support@apimatic.io',
     url='https://apimatic.io',
     packages=find_packages(),
-    # package_data={"core": ["py.typed"]},
-    install_requires=[],
-    tests_require=[
-        'nose>=1.3.7'
-    ],
-    test_suite = 'nose.collector'
 )
