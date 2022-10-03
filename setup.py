@@ -11,7 +11,7 @@ else:
         long_description = fh.read()
 
 setup(
-    name='core-interfaces-python',
+    name='apimatic-core-interfaces',
     version='1.0.0',
     description='The abstract library for APIMatic SDKs',
     long_description=long_description,
