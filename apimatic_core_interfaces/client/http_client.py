@@ -25,13 +25,14 @@ class HttpClient(ABC):
         ...
 
     @abstractmethod
-    def convert_response(self, response, contains_binary_response):
+    def convert_response(self, response, contains_binary_response, request):
         """Converts the Response object of the HttpClient into an
         HttpResponse object.
 
         Args:
             response (dynamic): The original response object.
             contains_binary_response (bool): The flag to check if the response is of binary type.
+            request (HttpRequest): The original HttpRequest object.
 
         Returns:
             HttpResponse: The converted HttpResponse object.
