@@ -12,12 +12,13 @@ else:
 
 setup(
     name='apimatic-core-interfaces',
-    version='0.1.0',
-    description='An abstract layer of the functionalities provided by apimatic-core-library, requests-client-adapter and APIMatic SDKs.',
+    version='0.1.1',
+    description='An abstract layer of the functionalities provided by apimatic-core-library, requests-client-adapter '
+                'and APIMatic SDKs.',
     long_description=long_description,
     long_description_content_type="text/markdown",
     author='APIMatic',
     author_email='support@apimatic.io',
-    url='https://apimatic.io',
+    url='https://github.com/apimatic/core-interfaces-python',
     packages=find_packages(),
 )
