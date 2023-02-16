@@ -28,5 +28,5 @@ pip install apimatic-core-interfaces
 | [`HttpMethodEnum`](apimatic_core_interfaces/types/http_method_enum.py )       | Enumeration containig HTTP Methods (GET, POST, PATCH, DELETE)   |
 
 [pypi-version]: https://img.shields.io/pypi/v/apimatic-core-interfaces
-[license-badge]: https://img.shields.io/badge/licence-APIMATIC-blue
+[license-badge]: https://img.shields.io/badge/licence-MIT-blue
 [license-url]: LICENSE
