@@ -12,7 +12,7 @@ else:
 
 setup(
     name='apimatic-core-interfaces',
-    version='0.1.2',
+    version='0.1.3',
     description='An abstract layer of the functionalities provided by apimatic-core-library, requests-client-adapter '
                 'and APIMatic SDKs.',
     long_description=long_description,
