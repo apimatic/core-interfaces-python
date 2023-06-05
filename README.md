@@ -15,11 +15,12 @@ pip install apimatic-core-interfaces
 ```
 
 ## Interfaces
-| Name                                                                       | Description                                                                              |
-|--------------------------------------------------------------------------- |------------------------------------------------------------------------------------------|
-| [`HttpClient`](apimatic_core_interfaces/client/http_client.py)             | To save both Request and Response after the completion of response                         |
-| [`ResponseFactory`](apimatic_core_interfaces/factories/response_factory.py)| To convert the client-adapter response into a custom HTTP response                       |
-| [`Authentication`](apimatic_core_interfaces/types/authentication.py)       | To setup methods for the validation and application of the required authentication scheme|
+| Name                                                                        | Description                                                                               |
+|-----------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| [`HttpClient`](apimatic_core_interfaces/client/http_client.py)              | To save both Request and Response after the completion of response                        |
+| [`ResponseFactory`](apimatic_core_interfaces/factories/response_factory.py) | To convert the client-adapter response into a custom HTTP response                        |
+| [`Authentication`](apimatic_core_interfaces/types/authentication.py)        | To setup methods for the validation and application of the required authentication scheme |
+| [`UnionType`](apimatic_core_interfaces/types/union_type.py)                 | To setup methods for the validation and deserialization of OneOf/AnyOf union types        |
 
 
 ## Enumerations
