@@ -10,7 +10,7 @@ class UnionType(ABC):
         self._union_types = union_types
         self._union_type_context = union_type_context
         self.is_valid = False
-        self.error_messages = None
+        self.error_messages = set()
 
     @abstractmethod
     def validate(self, value):
