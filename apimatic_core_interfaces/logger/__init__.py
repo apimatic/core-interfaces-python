@@ -1,4 +1,4 @@
 __all__=[
-    "Logger",
-    "LogLevel"
+    "api_logger",
+    "logger"
 ]

@@ -1,7 +1,7 @@
 from abc import abstractmethod
 
 
-class Logger(object):
+class Logger:
 
     @abstractmethod
     def log(self, level, message, params):
