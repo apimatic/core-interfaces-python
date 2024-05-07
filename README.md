@@ -22,7 +22,7 @@ pip install apimatic-core-interfaces
 | [`Authentication`](apimatic_core_interfaces/types/authentication.py)        | To setup methods for the validation and application of the required authentication scheme |
 | [`UnionType`](apimatic_core_interfaces/types/union_type.py)                 | To setup methods for the validation and deserialization of OneOf/AnyOf union types        |
 | [`Logger`](apimatic_core_interfaces/logger/logger.py)                       | Interface for logging messages at different levels                                        |
-| [`ApiLogger`](apimatic_core_interfaces/logger/api_logger.py)                | Interface for Loggin Api Calls                                                            |
+| [`ApiLogger`](apimatic_core_interfaces/logger/api_logger.py)                | Interface for Logging Api Calls including request & response                              |
 
 ## Enumerations
 | Name                                                                          | Description                                                     |
