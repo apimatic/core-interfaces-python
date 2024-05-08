@@ -2,6 +2,10 @@ from abc import abstractmethod
 
 
 class Logger:
+    """An interface for the generic logger facade.
+
+    This class should not be instantiated but should be used as a base class
+    for Logger classes."""
 
     @abstractmethod
     def log(self, level, message, params):
