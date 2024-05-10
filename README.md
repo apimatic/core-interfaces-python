@@ -21,7 +21,8 @@ pip install apimatic-core-interfaces
 | [`ResponseFactory`](apimatic_core_interfaces/factories/response_factory.py) | To convert the client-adapter response into a custom HTTP response                        |
 | [`Authentication`](apimatic_core_interfaces/types/authentication.py)        | To setup methods for the validation and application of the required authentication scheme |
 | [`UnionType`](apimatic_core_interfaces/types/union_type.py)                 | To setup methods for the validation and deserialization of OneOf/AnyOf union types        |
-
+| [`Logger`](apimatic_core_interfaces/logger/logger.py)                       | An interface for the generic logger facade                                                |
+| [`ApiLogger`](apimatic_core_interfaces/logger/api_logger.py)                | An interface for logging API requests and responses                                       |
 
 ## Enumerations
 | Name                                                                          | Description                                                     |
