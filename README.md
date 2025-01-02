@@ -5,10 +5,10 @@
 ## Introduction
 This project contains the abstract layer for APIMatic's core library. The purpose of creating interfaces is to separate out the functionalities needed by APIMatic's core library module. The goal is to support scalability and feature enhancement of the core library and the SDKs along with avoiding any breaking changes by reducing tight coupling between modules through the introduction of interfaces.
 
-## Version supported 
-Currenty APIMatic supports  `Python version 3.7 - 3.11`  hence the apimatic-core-interfaces will need the same versions to be supported.
+## Version supported
+Currenty APIMatic supports  `Python version 3.7+`  hence the apimatic-core-interfaces will need the same versions to be supported.
 
-## Installation 
+## Installation
 Simply run the command below in your SDK as the apimatic-core-interfaces will be added as a dependency in the SDK.
 ```python
 pip install apimatic-core-interfaces
