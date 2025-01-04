@@ -11,17 +11,17 @@ class HttpMethodEnum(object):
 
     """
 
-    GET = "GET"
+    GET: str = "GET"
 
-    POST = "POST"
+    POST: str = "POST"
 
-    PUT = "PUT"
+    PUT: str = "PUT"
 
-    PATCH = "PATCH"
+    PATCH: str = "PATCH"
 
-    DELETE = "DELETE"
+    DELETE: str = "DELETE"
 
-    HEAD = "HEAD"
+    HEAD: str = "HEAD"
 
     @classmethod
     def to_string(cls, val):
