@@ -21,6 +21,5 @@ setup(
     author_email='support@apimatic.io',
     license='MIT',
     url='https://github.com/apimatic/core-interfaces-python',
-    packages=['apimatic_core_interfaces'],
-    package_data={'apimatic_core_interfaces': ['py.typed']},
+    packages=find_packages(),
 )
