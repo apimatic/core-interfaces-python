@@ -2,9 +2,9 @@ from abc import ABC, abstractmethod
 
 from pydantic import validate_call
 
-from apimatic_core_interfaces.types.endpoint_configuration import EndpointConfiguration
-from apimatic_core_interfaces.types.http_request import HttpRequest
-from apimatic_core_interfaces.types.http_response import HttpResponse
+from apimatic_core_interfaces.configuration.endpoint_configuration import EndpointConfiguration
+from apimatic_core_interfaces.http.http_request import HttpRequest
+from apimatic_core_interfaces.http.http_response import HttpResponse
 
 
 class HttpClient(ABC):

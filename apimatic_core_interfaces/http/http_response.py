@@ -2,7 +2,7 @@ from typing import Dict
 
 from pydantic import BaseModel
 
-from apimatic_core_interfaces.types.http_request import HttpRequest
+from apimatic_core_interfaces.http.http_request import HttpRequest
 
 
 class HttpResponse(BaseModel):

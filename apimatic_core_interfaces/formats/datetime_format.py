@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class DateTimeFormat(Enum, str):
+class DateTimeFormat(str, Enum):
     """Enumeration of Date time formats
 
     Attributes:

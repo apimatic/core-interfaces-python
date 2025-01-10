@@ -1,5 +1,8 @@
 __all__ = [
-    'client',
+    'http',
+    'formats',
+    'configuration',
+    'authentication',
     'factories',
     'types',
     'logger'

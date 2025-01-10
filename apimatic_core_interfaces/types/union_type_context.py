@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional, Callable, Any
 
-from apimatic_core_interfaces.types.datetime_format import DateTimeFormat
+from apimatic_core_interfaces.formats.datetime_format import DateTimeFormat
 
 
 class UnionTypeContext(BaseModel):

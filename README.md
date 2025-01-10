@@ -17,9 +17,9 @@ pip install apimatic-core-interfaces
 ## Interfaces
 | Name                                                                        | Description                                                                               |
 |-----------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| [`HttpClient`](apimatic_core_interfaces/client/http_client.py)              | To save both Request and Response after the completion of response                        |
+| [`HttpClient`](apimatic_core_interfaces/http/http_client.py)              | To save both Request and Response after the completion of response                        |
 | [`ResponseFactory`](apimatic_core_interfaces/factories/response_factory.py) | To convert the client-adapter response into a custom HTTP response                        |
-| [`Authentication`](apimatic_core_interfaces/types/authentication.py)        | To setup methods for the validation and application of the required authentication scheme |
+| [`Authentication`](apimatic_core_interfaces/authentication/authentication.py)        | To setup methods for the validation and application of the required authentication scheme |
 | [`UnionType`](apimatic_core_interfaces/types/union_type.py)                 | To setup methods for the validation and deserialization of OneOf/AnyOf union types        |
 | [`Logger`](apimatic_core_interfaces/logger/logger.py)                       | An interface for the generic logger facade                                                |
 | [`ApiLogger`](apimatic_core_interfaces/logger/api_logger.py)                | An interface for logging API requests and responses                                       |
@@ -27,7 +27,7 @@ pip install apimatic-core-interfaces
 ## Enumerations
 | Name                                                                          | Description                                                     |
 |-------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| [`HttpMethodEnum`](apimatic_core_interfaces/types/http_method_enum.py )       | Enumeration containig HTTP Methods (GET, POST, PATCH, DELETE)   |
+| [`HttpMethodEnum`](apimatic_core_interfaces/http/http_method_enum.py )       | Enumeration containig HTTP Methods (GET, POST, PATCH, DELETE)   |
 
 [pypi-version]: https://img.shields.io/pypi/v/apimatic-core-interfaces
 [license-badge]: https://img.shields.io/badge/licence-MIT-blue

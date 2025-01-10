@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from typing import List, Any
+from typing import List, Any, Set
 
 from pydantic import validate_call
 
@@ -13,8 +13,8 @@ class UnionType(ABC):
     def __init__(self, union_types: List['UnionType'], union_type_context: UnionTypeContext):
         self._union_types = union_types
         self._union_type_context = union_type_context
-        self.is_valid = False
-        self.error_messages = set()
+        self.is_valid: bool = False
+        self.error_messages: Set[str] = set()
 
     @abstractmethod
     @validate_call

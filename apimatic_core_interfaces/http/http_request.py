@@ -1,4 +1,4 @@
-from apimatic_core_interfaces.types.http_method_enum import HttpMethodEnum
+from apimatic_core_interfaces.http.http_method_enum import HttpMethodEnum
 from pydantic import BaseModel
 from typing import Optional, Dict, List, Any, Tuple
 

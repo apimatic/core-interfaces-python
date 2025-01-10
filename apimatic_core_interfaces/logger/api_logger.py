@@ -2,8 +2,8 @@ from abc import abstractmethod
 
 from pydantic import validate_call
 
-from apimatic_core_interfaces.types.http_request import HttpRequest
-from apimatic_core_interfaces.types.http_response import HttpResponse
+from apimatic_core_interfaces.http.http_request import HttpRequest
+from apimatic_core_interfaces.http.http_response import HttpResponse
 
 
 class ApiLogger:
