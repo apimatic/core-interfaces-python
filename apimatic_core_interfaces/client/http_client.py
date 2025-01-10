@@ -1,5 +1,10 @@
-# -*- coding: utf-8 -*-
 from abc import ABC, abstractmethod
+
+from pydantic import validate_call
+
+from apimatic_core_interfaces.types.endpoint_configuration import EndpointConfiguration
+from apimatic_core_interfaces.types.http_request import HttpRequest
+from apimatic_core_interfaces.types.http_response import HttpResponse
 
 
 class HttpClient(ABC):
@@ -11,7 +16,8 @@ class HttpClient(ABC):
     """
 
     @abstractmethod
-    def execute(self, request, endpoint_configuration):
+    @validate_call
+    def execute(self, request: HttpRequest, endpoint_configuration: EndpointConfiguration):
         """Execute a given CoreHttpRequest to get a string response back
 
         Args:
@@ -25,7 +31,8 @@ class HttpClient(ABC):
         ...
 
     @abstractmethod
-    def convert_response(self, response, contains_binary_response, request):
+    @validate_call
+    def convert_response(self, response: HttpResponse, contains_binary_response: bool, request: HttpRequest):
         """Converts the Response object of the HttpClient into an
         HttpResponse object.
 

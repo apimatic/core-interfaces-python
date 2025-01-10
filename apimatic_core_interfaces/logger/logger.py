@@ -1,5 +1,7 @@
 from abc import abstractmethod
 
+from typing import Any, Dict
+
 
 class Logger:
     """An interface for the generic logger facade.
@@ -8,7 +10,7 @@ class Logger:
     for Logger classes."""
 
     @abstractmethod
-    def log(self, level, message, params):
+    def log(self, level: int, message: str, params: Dict[str, Any]):
         """Logs a message with a specified log level and additional parameters.
 
         Args:

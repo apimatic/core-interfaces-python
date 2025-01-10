@@ -1,5 +1,11 @@
 from abc import abstractmethod
 
+from pydantic import validate_call
+
+from apimatic_core_interfaces.types.http_request import HttpRequest
+from apimatic_core_interfaces.types.http_response import HttpResponse
+
+
 class ApiLogger:
     """An interface for logging API requests and responses.
 
@@ -7,7 +13,8 @@ class ApiLogger:
     for API Logger classes."""
 
     @abstractmethod
-    def log_request(self, http_request):
+    @validate_call
+    def log_request(self, http_request: HttpRequest):
         """Logs the given HTTP request.
 
         Args:
@@ -16,7 +23,8 @@ class ApiLogger:
         ...
 
     @abstractmethod
-    def log_response(self, http_response):
+    @validate_call
+    def log_response(self, http_response: HttpResponse):
         """Logs the given HTTP response.
 
         Args:

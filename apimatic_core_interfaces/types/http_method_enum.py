@@ -1,3 +1,5 @@
+from pydantic import validate_call
+
 
 class HttpMethodEnum(object):
     """Enumeration of an HTTP Method
@@ -24,17 +26,19 @@ class HttpMethodEnum(object):
     HEAD: str = "HEAD"
 
     @classmethod
-    def to_string(cls, val):
+    @validate_call
+    def to_string(cls, http_method: str):
         """Returns the string equivalent for the Enum.
 
         """
         for k, v in list(vars(cls).items()):
-            if v == val:
+            if v == http_method:
                 return k
 
     @classmethod
-    def from_string(cls, str):
+    @validate_call
+    def from_string(cls, value: str):
         """Creates an instance of the Enum from a given string.
 
         """
-        return getattr(cls, str.upper(), None)
+        return getattr(cls, value.upper(), None)
