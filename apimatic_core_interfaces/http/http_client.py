@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 
 from pydantic import validate_call
+from typing import Any
 
 from apimatic_core_interfaces.configuration.endpoint_configuration import EndpointConfiguration
 from apimatic_core_interfaces.http.http_request import HttpRequest
@@ -31,8 +32,8 @@ class HttpClient(ABC):
         ...
 
     @abstractmethod
-    @validate_call
-    def convert_response(self, response: HttpResponse, contains_binary_response: bool, request: HttpRequest):
+    @validate_call(config={"arbitrary_types_allowed": True})
+    def convert_response(self, response: Any, contains_binary_response: bool, request: HttpRequest):
         """Converts the Response object of the HttpClient into an
         HttpResponse object.
 
