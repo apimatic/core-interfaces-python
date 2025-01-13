@@ -3,7 +3,6 @@ __all__ = [
     'formats',
     'configuration',
     'authentication',
-    'factories',
     'types',
     'logger'
 ]
