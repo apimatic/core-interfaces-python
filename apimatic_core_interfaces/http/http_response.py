@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Optional, Union
 
 from pydantic import BaseModel
 
@@ -21,7 +21,7 @@ class HttpResponse(BaseModel):
     """
 
     status_code: int
-    reason_phrase: str
+    reason_phrase: Optional[str]
     headers: Dict[str, str]
-    text: str
+    text: Union[str, bytes]
     request: HttpRequest
