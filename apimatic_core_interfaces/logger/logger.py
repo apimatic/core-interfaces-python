@@ -2,6 +2,8 @@ from abc import abstractmethod
 
 from typing import Any, Dict
 
+from pydantic import validate_call
+
 
 class Logger:
     """An interface for the generic logger facade.
@@ -10,6 +12,7 @@ class Logger:
     for Logger classes."""
 
     @abstractmethod
+    @validate_call
     def log(self, level: int, message: str, params: Dict[str, Any]):
         """Logs a message with a specified log level and additional parameters.
 

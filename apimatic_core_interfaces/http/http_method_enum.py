@@ -1,7 +1,9 @@
+from enum import Enum
+
 from pydantic import validate_call
 
 
-class HttpMethodEnum(object):
+class HttpMethodEnum(str, Enum):
     """Enumeration of an HTTP Method
 
     Attributes:
@@ -13,17 +15,17 @@ class HttpMethodEnum(object):
 
     """
 
-    GET: str = "GET"
+    GET = "GET"
 
-    POST: str = "POST"
+    POST = "POST"
 
-    PUT: str = "PUT"
+    PUT = "PUT"
 
-    PATCH: str = "PATCH"
+    PATCH = "PATCH"
 
-    DELETE: str = "DELETE"
+    DELETE = "DELETE"
 
-    HEAD: str = "HEAD"
+    HEAD = "HEAD"
 
     @classmethod
     @validate_call
