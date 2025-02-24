@@ -1,5 +1,5 @@
 from apimatic_core_interfaces.http.http_method_enum import HttpMethodEnum
-from pydantic import BaseModel, validate_call
+from pydantic import BaseModel, validate_call, Field
 from typing import Optional, Dict, List, Any, Tuple, Union
 
 
@@ -22,10 +22,10 @@ class HttpRequest(BaseModel):
 
     http_method: HttpMethodEnum
     query_url: str
-    headers: Optional[Dict[str, str]] = None
-    query_parameters: Optional[Dict[str, Any]] = None
-    parameters: Optional[Union[List[Tuple[str, Any]], str]] = None
-    files: Optional[Dict[str, Any]] = None
+    headers: Dict[str, Any] = Field(default_factory=dict)
+    query_parameters: Dict[str, Any] = Field(default_factory=dict)
+    parameters: Any = None
+    files: Any = None
 
     @validate_call
     def add_header(self, name: str, value: str):
