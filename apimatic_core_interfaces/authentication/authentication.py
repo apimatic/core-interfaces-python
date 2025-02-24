@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Dict
 
+from typing_extensions import Self
+
 from apimatic_core_interfaces.http.http_request import HttpRequest
 
 
@@ -16,7 +18,7 @@ class Authentication(ABC):
         ...
 
     @abstractmethod
-    def with_auth_managers(self, auth_managers: Dict[str, 'Authentication']):
+    def with_auth_managers(self, auth_managers: Dict[str, Self]):
         ...
 
     @abstractmethod

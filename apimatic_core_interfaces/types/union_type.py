@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 
-from typing import List, Any, Set, Optional, Type
+from typing import List, Any, Set, Type
 
-from pydantic import validate_call
+from typing_extensions import Self
 
 from apimatic_core_interfaces.types.union_type_context import UnionTypeContext
 
@@ -10,14 +10,14 @@ from apimatic_core_interfaces.types.union_type_context import UnionTypeContext
 class UnionType(ABC):
     NATIVE_TYPES: List[Type] = [int, str, float, bool]
 
-    def __init__(self, union_types: List['UnionType'], union_type_context: UnionTypeContext):
+    def __init__(self, union_types: List[Self], union_type_context: UnionTypeContext):
         self._union_types = union_types
         self._union_type_context = union_type_context
         self.is_valid: bool = False
         self.error_messages: Set[str] = set()
 
     @abstractmethod
-    def validate(self, value: Any) -> 'UnionType':
+    def validate(self, value: Any) -> Self:
         ...
 
     @abstractmethod
