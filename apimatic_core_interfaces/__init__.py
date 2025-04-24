@@ -2,5 +2,6 @@ __all__ = [
     'client',
     'factories',
     'types',
-    'logger'
+    'logger',
+    'pagination'
 ]
