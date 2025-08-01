@@ -1,5 +1,7 @@
 # apimatic-core-interfaces
 [![PyPI][pypi-version]](https://pypi.org/project/apimatic-core-interfaces/)
+[![Maintainability Rating][maintainability-badge]][maintainability-url]
+[![Vulnerabilities][vulnerabilities-badge]][vulnerabilities-url]
 [![Licence][license-badge]][license-url]
 
 ## Introduction
@@ -32,3 +34,7 @@ pip install apimatic-core-interfaces
 [pypi-version]: https://img.shields.io/pypi/v/apimatic-core-interfaces
 [license-badge]: https://img.shields.io/badge/licence-MIT-blue
 [license-url]: LICENSE
+[maintainability-badge]: https://sonarcloud.io/api/project_badges/measure?project=apimatic_core-interfaces-python&metric=sqale_rating
+[maintainability-url]: https://sonarcloud.io/summary/new_code?id=apimatic_core-interfaces-python
+[vulnerabilities-badge]: https://sonarcloud.io/api/project_badges/measure?project=apimatic_core-interfaces-python&metric=vulnerabilities
+[vulnerabilities-url]: https://sonarcloud.io/summary/new_code?id=apimatic_core-interfaces-python
