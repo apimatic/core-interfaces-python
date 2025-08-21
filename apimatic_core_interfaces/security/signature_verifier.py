@@ -10,12 +10,11 @@ class SignatureVerifier(ABC):
     """
 
     @abstractmethod
-    def verify(self, key: str, headers: Mapping[str, str], payload: str) -> bool:
+    def verify(self, headers: Mapping[str, str], payload: str) -> bool:
         """
         Verify the signature for a given JSON payload and headers.
 
         Args:
-            key (str): Secret or public key used to validate the signature.
             headers (Mapping[str, str]): HTTP headers containing signature fields.
             payload (str): Raw request body as a JSON string.
 
