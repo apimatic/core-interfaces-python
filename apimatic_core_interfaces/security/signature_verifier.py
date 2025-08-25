@@ -1,6 +1,9 @@
 from abc import ABC, abstractmethod
 from typing import Mapping
 
+from apimatic_core_interfaces.types.event_request import EventRequest
+
+
 class SignatureVerifier(ABC):
     """
     Abstract base class for signature verification.
@@ -10,15 +13,13 @@ class SignatureVerifier(ABC):
     """
 
     @abstractmethod
-    def verify(self, headers: Mapping[str, str], payload: str) -> bool:
-        """
-        Verify the signature for a given JSON payload and headers.
+    def verify(self, request: EventRequest) -> bool:
+        """Validate the request signature.
 
         Args:
-            headers (Mapping[str, str]): HTTP headers containing signature fields.
-            payload (str): Raw request body as a JSON string.
+            request: The incoming event request wrapper.
 
         Returns:
-            bool: True if the signature is valid; False otherwise.
+            True if the request passes this verifier; otherwise False.
         """
         raise NotImplementedError
