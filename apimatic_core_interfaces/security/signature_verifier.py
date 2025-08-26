@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
-from typing import Mapping
 
-from apimatic_core_interfaces.types.event_request import EventRequest
+from apimatic_core_interfaces.http.request import Request
 
 
 class SignatureVerifier(ABC):
@@ -13,7 +12,7 @@ class SignatureVerifier(ABC):
     """
 
     @abstractmethod
-    def verify(self, request: EventRequest) -> bool:
+    def verify(self, request: Request) -> bool:
         """Validate the request signature.
 
         Args:
