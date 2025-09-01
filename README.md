@@ -1,40 +1,46 @@
 # apimatic-core-interfaces
-[![PyPI][pypi-version]](https://pypi.org/project/apimatic-core-interfaces/)
-[![Maintainability Rating][maintainability-badge]][maintainability-url]
-[![Vulnerabilities][vulnerabilities-badge]][vulnerabilities-url]
+[![PyPI][pypi-version]](https://pypi.org/project/apimatic-core-interfaces/)  
+[![Maintainability Rating][maintainability-badge]][maintainability-url]  
+[![Vulnerabilities][vulnerabilities-badge]][vulnerabilities-url]  
 [![Licence][license-badge]][license-url]
 
 ## Introduction
-This project contains the abstract layer for APIMatic's core library. The purpose of creating interfaces is to separate out the functionalities needed by APIMatic's core library module. The goal is to support scalability and feature enhancement of the core library and the SDKs along with avoiding any breaking changes by reducing tight coupling between modules through the introduction of interfaces.
+This project contains the abstract layer for APIMatic's core library. The purpose of creating interfaces is to separate out the functionalities needed by APIMatic's core library module. The goal is to support scalability and feature enhancement of the core library and the SDKs, while avoiding breaking changes by reducing tight coupling between modules.
 
-## Version supported
-Currenty APIMatic supports  `Python version 3.7+`  hence the apimatic-core-interfaces will need the same versions to be supported.
+## Version Supported
+Currently, APIMatic supports **Python version 3.7+**, hence the `apimatic-core-interfaces` package requires the same version support.
 
 ## Installation
-Simply run the command below in your SDK as the apimatic-core-interfaces will be added as a dependency in the SDK.
-```python
+Run the following command in your SDK (the `apimatic-core-interfaces` package will be added as a dependency):
+```bash
 pip install apimatic-core-interfaces
 ```
 
 ## Interfaces
-| Name                                                                        | Description                                                                               |
-|-----------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| [`HttpClient`](apimatic_core_interfaces/client/http_client.py)              | To save both Request and Response after the completion of response                        |
-| [`ResponseFactory`](apimatic_core_interfaces/factories/response_factory.py) | To convert the client-adapter response into a custom HTTP response                        |
-| [`Authentication`](apimatic_core_interfaces/types/authentication.py)        | To setup methods for the validation and application of the required authentication scheme |
-| [`UnionType`](apimatic_core_interfaces/types/union_type.py)                 | To setup methods for the validation and deserialization of OneOf/AnyOf union types        |
-| [`Logger`](apimatic_core_interfaces/logger/logger.py)                       | An interface for the generic logger facade                                                |
-| [`ApiLogger`](apimatic_core_interfaces/logger/api_logger.py)                | An interface for logging API requests and responses                                       |
+| Name                                                                                       | Description                                                                                 |
+|--------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| [`HttpClient`](apimatic_core_interfaces/client/http_client.py)                             | Saves both request and response after the completion of response.                           |
+| [`ResponseFactory`](apimatic_core_interfaces/factories/response_factory.py)                | Converts the client-adapter response into a custom HTTP response.                           |
+| [`Authentication`](apimatic_core_interfaces/types/authentication.py)                       | Sets up methods for the validation and application of the required authentication scheme.   |
+| [`UnionType`](apimatic_core_interfaces/types/union_type.py)                                 | Sets up methods for the validation and deserialization of OneOf/AnyOf union types.           |
+| [`Logger`](apimatic_core_interfaces/logger/logger.py)                                       | An interface for the generic logger facade.                                                 |
+| [`ApiLogger`](apimatic_core_interfaces/logger/api_logger.py)                                | An interface for logging API requests and responses.                                        |
+
+## Security
+| Name                                                                                       | Description                                                                                 |
+|--------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| [`SignatureVerifier`](apimatic_core_interfaces/security/signature_verifier.py)             | Defines the contract for verifying the authenticity of incoming events or webhook requests. |
+| [`VerificationResult`](apimatic_core_interfaces/security/verification_result.py)           | Provides a structured result of the verification process, including success, failure, and error details. |
 
 ## Enumerations
-| Name                                                                          | Description                                                     |
-|-------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| [`HttpMethodEnum`](apimatic_core_interfaces/types/http_method_enum.py )       | Enumeration containig HTTP Methods (GET, POST, PATCH, DELETE)   |
+| Name                                                                                   | Description                                                   |
+|----------------------------------------------------------------------------------------|---------------------------------------------------------------|
+| [`HttpMethodEnum`](apimatic_core_interfaces/types/http_method_enum.py)                 | Enumeration containing HTTP methods (GET, POST, PATCH, DELETE).|
 
-[pypi-version]: https://img.shields.io/pypi/v/apimatic-core-interfaces
-[license-badge]: https://img.shields.io/badge/licence-MIT-blue
-[license-url]: LICENSE
-[maintainability-badge]: https://sonarcloud.io/api/project_badges/measure?project=apimatic_core-interfaces-python&metric=sqale_rating
-[maintainability-url]: https://sonarcloud.io/summary/new_code?id=apimatic_core-interfaces-python
-[vulnerabilities-badge]: https://sonarcloud.io/api/project_badges/measure?project=apimatic_core-interfaces-python&metric=vulnerabilities
+[pypi-version]: https://img.shields.io/pypi/v/apimatic-core-interfaces  
+[license-badge]: https://img.shields.io/badge/licence-MIT-blue  
+[license-url]: LICENSE  
+[maintainability-badge]: https://sonarcloud.io/api/project_badges/measure?project=apimatic_core-interfaces-python&metric=sqale_rating  
+[maintainability-url]: https://sonarcloud.io/summary/new_code?id=apimatic_core-interfaces-python  
+[vulnerabilities-badge]: https://sonarcloud.io/api/project_badges/measure?project=apimatic_core-interfaces-python&metric=vulnerabilities  
 [vulnerabilities-url]: https://sonarcloud.io/summary/new_code?id=apimatic_core-interfaces-python
