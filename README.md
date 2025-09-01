@@ -25,11 +25,12 @@ pip install apimatic-core-interfaces
 | [`UnionType`](apimatic_core_interfaces/types/union_type.py)                                 | Sets up methods for the validation and deserialization of OneOf/AnyOf union types.           |
 | [`Logger`](apimatic_core_interfaces/logger/logger.py)                                       | An interface for the generic logger facade.                                                 |
 | [`ApiLogger`](apimatic_core_interfaces/logger/api_logger.py)                                | An interface for logging API requests and responses.                                        |
+| [`SignatureVerifier`](apimatic_core_interfaces/security/signature_verifier.py)             | Defines the contract for verifying the authenticity of incoming events or webhook requests. |
 
-## Security
+## Models
 | Name                                                                                       | Description                                                                                 |
 |--------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
-| [`SignatureVerifier`](apimatic_core_interfaces/security/signature_verifier.py)             | Defines the contract for verifying the authenticity of incoming events or webhook requests. |
+| [`Request`](apimatic_core_interfaces/http/request.py)           | Framework-agnostic request model capturing headers, method, path, body, and raw bytes. |
 | [`VerificationResult`](apimatic_core_interfaces/security/verification_result.py)           | Provides a structured result of the verification process, including success, failure, and error details. |
 
 ## Enumerations
