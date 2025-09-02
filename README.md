@@ -27,11 +27,11 @@ pip install apimatic-core-interfaces
 | [`ApiLogger`](apimatic_core_interfaces/logger/api_logger.py)                                | An interface for logging API requests and responses.                                        |
 | [`SignatureVerifier`](apimatic_core_interfaces/security/signature_verifier.py)             | Defines the contract for verifying the authenticity of incoming events or webhook requests. |
 
-## Models
-| Name                                                                                       | Description                                                                                 |
-|--------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
-| [`Request`](apimatic_core_interfaces/http/request.py)           | Framework-agnostic request model capturing headers, method, path, body, and raw bytes. |
-| [`VerificationResult`](apimatic_core_interfaces/security/verification_result.py)           | Provides a structured result of the verification process, including success, failure, and error details. |
+## Types
+| Name                                                                                             | Description                                                                                 |
+|--------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| [`Request`](apimatic_core_interfaces/http/request.py)                                            | Framework-agnostic request model capturing headers, method, path, body, and raw bytes. |
+| [`SignatureVerificationResult`](apimatic_core_interfaces/types/signature_verification_result.py) | Provides a structured result of the verification process, including success, failure, and error details. |
 
 ## Enumerations
 | Name                                                                                   | Description                                                   |

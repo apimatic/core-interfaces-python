@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 from apimatic_core_interfaces.http.request import Request
-from apimatic_core_interfaces.security.verification_result import VerificationResult
+from apimatic_core_interfaces.types.signature_verification_result import SignatureVerificationResult
 
 
 class SignatureVerifier(ABC):
@@ -13,12 +13,12 @@ class SignatureVerifier(ABC):
     """
 
     @abstractmethod
-    def verify(self, request: Request) -> VerificationResult:
+    def verify(self, request: Request) -> SignatureVerificationResult:
         """
         Perform signature verification.
 
         Returns:
-            VerificationResult: ok=True when the signature is valid; ok=False with the
+            SignatureVerificationResult: ok=True when the signature is valid; ok=False with the
             underlying exception (if any) when invalid or an error occurred.
 
         Notes:
