@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import Optional
 
 
-class signatureVerificationResult:
+class SignatureVerificationResult:
     """
     Outcome of signature verification.
 
@@ -18,9 +18,9 @@ class signatureVerificationResult:
         self.error = error
 
     @staticmethod
-    def passed() -> "signatureVerificationResult":
-        return signatureVerificationResult(ok=True, error=None)
+    def passed() -> "SignatureVerificationResult":
+        return SignatureVerificationResult(ok=True, error=None)
 
     @staticmethod
-    def failed(error: Optional[Exception] = None) -> "signatureVerificationResult":
-        return signatureVerificationResult(ok=False, error=error)
+    def failed(error: Optional[Exception] = None) -> "SignatureVerificationResult":
+        return SignatureVerificationResult(ok=False, error=error)
