@@ -2,8 +2,8 @@ from typing import Mapping, Optional, Union, Iterable, Any, Dict
 
 Headers = Mapping[str, str]
 Cookies = Mapping[str, str]
-QueryParams = Mapping[str, Union[str, Iterable[str]]]
-FormData = Mapping[str, Union[str, Iterable[str]]]
+QueryParams = Mapping[str, Any]
+FormData = Mapping[str, Any]
 Files = Mapping[str, Any]  # framework-agnostic placeholder (e.g., Starlette UploadFile)
 
 
