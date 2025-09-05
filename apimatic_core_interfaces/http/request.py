@@ -1,85 +1,138 @@
-from typing import Mapping, Optional, Union, Iterable, Any, Dict
-
-Headers = Mapping[str, str]
-Cookies = Mapping[str, str]
-QueryParams = Mapping[str, Any]
-FormData = Mapping[str, Any]
-Files = Mapping[str, Any]  # framework-agnostic placeholder (e.g., Starlette UploadFile)
+from dataclasses import dataclass, field
+from typing import Any, Dict, List, Optional
 
 
+@dataclass(frozen=True)
 class Request:
     """
-    Framework-agnostic HTTP request snapshot used by verifiers and the webhook manager.
+    Compact, framework-agnostic HTTP request snapshot (files excluded).
 
-    This class captures all important parts of an HTTP request in a way that does not depend
-    on any specific web framework. It is particularly useful for signature verification and
-    webhook processing.
-
-    Notes:
-        - `body` contains the decoded textual representation of the body (e.g., a JSON string).
-          This should be kept exactly as received.
-        - `raw_body` contains the raw byte stream if available. Use this for cryptographic
-          verification when signatures depend on raw payloads.
-        - Header names should be treated case-insensitively when accessed.
+    Fields:
+      - method, path, url
+      - headers: Dict[str, str]            (copied; later mutations on the original won't leak)
+      - raw_body: bytes                    (wire bytes; frameworks cache safely)
+      - query/form: Dict[str, List[str]>   (multi-value safe)
+      - cookies: Dict[str, str]
     """
+    method: str
+    path: str
+    url: Optional[str]
+    headers: Dict[str, str]
+    raw_body: bytes
+    query: Dict[str, List[str]] = field(default_factory=dict)
+    cookies: Dict[str, str] = field(default_factory=dict)
+    form: Dict[str, List[str]] = field(default_factory=dict)
 
-    # Required fields
-    headers: Optional[Headers] = None
-    method: Optional[str] = None
-    path: Optional[str] = None
-    body: Optional[str] = None
+    # ---------- helpers ----------
 
-    # Common metadata
-    url: Optional[str] = None
-    query: Optional[QueryParams] = None
-    cookies: Optional[Cookies] = None
+    @staticmethod
+    def _as_listdict(obj: Any) -> Dict[str, List[str]]:
+        """MultiDict/QueryDict → Dict[str, List[str]]; Mapping[str,str] → {k:[v]}."""
+        if not obj:
+            return {}
+        getlist = getattr(obj, "getlist", None)
+        if callable(getlist):
+            return {k: list(getlist(k)) for k in obj.keys()}
+        return {k: [obj[k]] for k in obj.keys()}
 
-    # Optional request bodies
-    raw_body: Optional[bytes] = None
-    form: Optional[FormData] = None
-    files: Optional[Files] = None
+    # ---------- factories (non-destructive) ----------
 
-    # Arbitrary extensions
-    extensions: Optional[Dict[str, Any]] = None
-
-    def __init__(
-        self,
-        method: Optional[str] = None,
-        path: Optional[str] = None,
-        headers: Optional[Headers] = None,
-        body: Optional[str] = None,
-        url: Optional[str] = None,
-        query: Optional[QueryParams] = None,
-        cookies: Optional[Cookies] = None,
-        raw_body: Optional[bytes] = None,
-        form: Optional[FormData] = None,
-        files: Optional[Files] = None,
-        extensions: Optional[Dict[str, Any]] = None,
-    ):
+    @staticmethod
+    async def from_fastapi_request(request) -> "Request":
         """
-        Initialize a new request snapshot.
+        Build from fastapi.Request / starlette.requests.Request.
 
-        Args:
-            method: HTTP method of the request (e.g., "GET", "POST").
-            path: URL path of the request, excluding query parameters.
-            headers: Mapping of header keys to values (case-insensitive).
-            body: Decoded body content as a string, such as a JSON or XML string.
-            url: Full request URL if available.
-            query: Mapping of query parameter keys to single or multiple values.
-            cookies: Mapping of cookie keys to values.
-            raw_body: Raw bytes of the request body, for signature verification.
-            form: Parsed form data, if the request contains form fields.
-            files: Uploaded files associated with the request.
-            extensions: Arbitrary framework-specific or user-defined metadata.
+        - raw body via await req.body() (Starlette caches; non-destructive)
+        - parse form *only text fields* when content-type is form-like
+        - **file parts are ignored by design**
+        - copy mappings so later mutations on the original request won't leak
         """
-        self.method = method
-        self.path = path
-        self.headers = headers
-        self.body = body
-        self.url = url
-        self.query = query
-        self.cookies = cookies
-        self.raw_body = raw_body
-        self.form = form
-        self.files = files
-        self.extensions = extensions
+        headers = dict(request.headers)
+        raw = await request.body()
+        query = Request._as_listdict(request.query_params)
+        cookies = dict(request.cookies)
+        url_str = str(request.url)
+        path = request.url.path
+
+        ct = (headers.get("content-type") or headers.get("Content-Type") or "").lower()
+        parse_form = ct.startswith(("multipart/form-data", "application/x-www-form-urlencoded"))
+
+        form: Dict[str, List[str]] = {}
+        if parse_form:
+            formdata = await request.form()
+            # Only text fields; ignore UploadFile instances
+            for k in formdata.keys():
+                values = formdata.getlist(k)
+                for v in values:
+                    is_upload = hasattr(v, "filename") and hasattr(v, "read")
+                    if not is_upload:
+                        form.setdefault(k, []).append(str(v))
+
+        return Request(
+            method=request.method,
+            path=path,
+            url=url_str,
+            headers=headers,
+            raw_body=raw,
+            query=query,
+            cookies=cookies,
+            form=form,
+        )
+
+    @staticmethod
+    def from_django_request(request) -> "Request":
+        """
+        Build from django.http.HttpRequest.
+
+        - uses req.body (cached bytes; non-destructive)
+        - text fields from req.POST
+        - **req.FILES is ignored by design**
+        - copies mappings to avoid leaking later mutations
+        """
+        headers = dict(getattr(request, "headers", {}) or {})
+        url_str = request.build_absolute_uri()
+        path = request.path
+        raw = bytes(getattr(request, "body", b"") or b"")
+        query = Request._as_listdict(getattr(request, "GET", {}))
+        cookies = dict(getattr(request, "COOKIES", {}) or {})
+        form = Request._as_listdict(getattr(request, "POST", {}))
+
+        return Request(
+            method=request.method,
+            path=path,
+            url=url_str,
+            headers=headers,
+            raw_body=raw,
+            query=query,
+            cookies=cookies,
+            form=form,
+        )
+
+    @staticmethod
+    def from_flask_request(request) -> "Request":
+        """
+        Build from flask.Request (Werkzeug).
+
+        - uses req.get_data(cache=True) (non-destructive)
+        - text fields from req.form
+        - **req.files is ignored by design**
+        - copies mappings to avoid leaking later mutations
+        """
+        headers = dict(request.headers)
+        url_str = getattr(request, "url", None)
+        path = request.path
+        raw = request.get_data(cache=True)
+        query = Request._as_listdict(request.args)
+        cookies = dict(request.cookies)
+        form = Request._as_listdict(request.form)
+
+        return Request(
+            method=request.method,
+            path=path,
+            url=url_str,
+            headers=headers,
+            raw_body=raw,
+            query=query,
+            cookies=cookies,
+            form=form,
+        )
