@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Optional
+from typing import Optional, List
 
 
 class SignatureVerificationResult:
@@ -8,19 +8,19 @@ class SignatureVerificationResult:
 
     Attributes:
         ok: True if the signature verification passed.
-        error: Optional exception raised by the verifier. None when ok=True.
+        errors: Optional list of errors raised by the verifier. None when ok=True.
     """
     ok: bool
-    error: Optional[Exception] = None
+    errors: Optional[List[str]] = None
 
-    def __init__(self, ok: bool, error: Optional[Exception] = None):
+    def __init__(self, ok: bool, errors: Optional[List[str]] = None):
         self.ok = ok
-        self.error = error
+        self.errors = errors
 
     @staticmethod
     def passed() -> "SignatureVerificationResult":
-        return SignatureVerificationResult(ok=True, error=None)
+        return SignatureVerificationResult(ok=True, errors=None)
 
     @staticmethod
-    def failed(error: Optional[Exception] = None) -> "SignatureVerificationResult":
-        return SignatureVerificationResult(ok=False, error=error)
+    def failed(errors: Optional[List[str]] = None) -> "SignatureVerificationResult":
+        return SignatureVerificationResult(ok=False, errors=errors)
