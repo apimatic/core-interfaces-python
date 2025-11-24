@@ -1,7 +1,7 @@
 # apimatic-core-interfaces
-[![PyPI][pypi-version]](https://pypi.org/project/apimatic-core-interfaces/)  
-[![Maintainability Rating][maintainability-badge]][maintainability-url]  
-[![Vulnerabilities][vulnerabilities-badge]][vulnerabilities-url]  
+[![PyPI][pypi-version]](https://pypi.org/project/apimatic-core-interfaces/)
+[![Maintainability Rating][maintainability-badge]][maintainability-url]
+[![Vulnerabilities][vulnerabilities-badge]][vulnerabilities-url]
 [![Licence][license-badge]][license-url]
 
 ## Introduction
