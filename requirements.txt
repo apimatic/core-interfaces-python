@@ -1,2 +1,2 @@
-setuptools>=68.0.0
+setuptools>=84.0.0
 requests~=2.31
